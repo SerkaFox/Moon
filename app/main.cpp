@@ -41,6 +41,8 @@
 #include "settings/streamingpreferences.h"
 #include "gui/sdlgamepadkeynavigation.h"
 
+#include "vigem/vigemsdlobject.h"
+
 #if !defined(QT_DEBUG) && defined(Q_OS_WIN32)
 // Log to file for release Windows builds
 #define USE_CUSTOM_LOGGER
@@ -244,6 +246,8 @@ LONG WINAPI UnhandledExceptionHandler(struct _EXCEPTION_POINTERS *ExceptionInfo)
 }
 
 #endif
+
+VigemSDLObject * vigem_sdl;
 
 int main(int argc, char *argv[])
 {
@@ -612,6 +616,12 @@ int main(int argc, char *argv[])
         }
     }
 
+    Vigem::VigemClient * vigem_client = new Vigem::VigemClient();
+
+    vigem_client->loadLibrary("ViGEmClient.dll");
+
+    vigem_sdl = new VigemSDLObject(vigem_client);
+
     engine.rootContext()->setContextProperty("initialView", initialView);
 
     // Load the main.qml file
@@ -623,6 +633,12 @@ int main(int argc, char *argv[])
     // Give worker tasks time to properly exit. Fixes PendingQuitTask
     // sometimes freezing and blocking process exit.
     QThreadPool::globalInstance()->waitForDone(30000);
+
+    vigem_client->getKeyMapper().writeToFile(
+                QDir::homePath() + QDir::separator() +
+                QString(".partyzone") + QDir::separator() +
+                QString("vigem-keys.json")
+                );
 
     return err;
 }

@@ -3,6 +3,8 @@
 #include <Limelight.h>
 #include <SDL.h>
 
+#include "vigem/vigemsdlobject.h"
+
 #define VK_0 0x30
 #define VK_A 0x41
 
@@ -12,6 +14,8 @@
 #define VK_F13 0x7C
 #define VK_NUMPAD0 0x60
 #endif
+
+extern VigemSDLObject * vigem_sdl;
 
 void SdlInputHandler::performSpecialKeyCombo(KeyCombo combo)
 {
@@ -146,6 +150,10 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
     if (event->repeat) {
         // Ignore repeat key down events
         SDL_assert(event->state == SDL_PRESSED);
+        return;
+    }
+
+    if (vigem_sdl->handleKeyboardEvent(event)) {
         return;
     }
 

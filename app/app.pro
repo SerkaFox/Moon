@@ -160,6 +160,9 @@ SOURCES += \
     gui/sdlgamepadkeynavigation.cpp \
     streaming/video/overlaymanager.cpp \
     backend/systemproperties.cpp \
+    vigem/vigemclient.cpp \
+    vigem/vigemkeymapper.cpp \
+    vigem/vigemsdlobject.cpp \
     wm.cpp
 
 HEADERS += \
@@ -193,7 +196,11 @@ HEADERS += \
     settings/mappingmanager.h \
     gui/sdlgamepadkeynavigation.h \
     streaming/video/overlaymanager.h \
-    backend/systemproperties.h
+    backend/systemproperties.h \
+    vigem/vigem_defs.h \
+    vigem/vigemclient.h \
+    vigem/vigemkeymapper.h \
+    vigem/vigemsdlobject.h
 
 # Platform-specific renderers and decoders
 ffmpeg {
