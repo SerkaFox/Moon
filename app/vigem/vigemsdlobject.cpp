@@ -19,6 +19,14 @@ bool VigemSDLObject::handleKeyboardEvent(SDL_KeyboardEvent *event)
         return false;
     }
 
+    if (event->keysym.mod & KMOD_CTRL) {
+        return false;
+    }
+
+    if (event->keysym.mod & KMOD_SHIFT) {
+        return false;
+    }
+
     if (!vigem_client) {
         return false;
     }
