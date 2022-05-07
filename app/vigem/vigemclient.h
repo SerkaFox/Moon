@@ -88,6 +88,7 @@ public:
 
     const QString & libraryPath() const;
     bool isLoaded() const;
+    bool isWorking() const;
 
     VigemKeyMapper getKeyMapper() const;
 

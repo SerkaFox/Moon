@@ -69,6 +69,11 @@ bool VigemClient::isLoaded() const
     return bool(vigem_library);
 }
 
+bool VigemClient::isWorking() const
+{
+    return bool(vigem_client) && bool(vigem_target);
+}
+
 VigemKeyMapper VigemClient::getKeyMapper() const
 {
     return keyMapper;
@@ -192,6 +197,12 @@ void VigemClient::setKeyMapper(const VigemKeyMapper &mapper)
  */
 bool VigemClient::startup(const QString & target)
 {
+    if (!vigem_library) {
+        qWarning() << "VigemClient::startup" << "trying to startup while library not loaded";
+
+        return false;
+    }
+
     if (vigem_client) {
         qWarning() << "VigemClient::startup" << "trying to startup while already started";
 
@@ -1218,6 +1229,9 @@ VigemClient::VigemError VigemClient::pressButton(Vigem::VigemOperation op)
     case Vigem::ButtonShutdown:
         shutdown();
         return ErrorNone;
+
+    default:
+        return ErrorNone;
     }
 
     return ErrorNone;
@@ -1297,6 +1311,9 @@ VigemClient::VigemError VigemClient::releaseButton(Vigem::VigemOperation op)
 
     case Vigem::ButtonRThumbDown:
         return releaseRightThumbDown();
+
+    default:
+        return ErrorNone;
     }
 
     return ErrorNone;

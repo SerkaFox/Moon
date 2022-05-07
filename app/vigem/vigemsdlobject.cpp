@@ -15,6 +15,10 @@ bool VigemSDLObject::handleKeyboardEvent(SDL_KeyboardEvent *event)
 {
     qDebug() << "SDL keyboard event" << event->state << event->keysym.sym;
 
+    if (event->keysym.mod & KMOD_ALT) {
+        return false;
+    }
+
     if (!vigem_client) {
         return false;
     }
