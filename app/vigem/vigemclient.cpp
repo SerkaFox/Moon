@@ -192,10 +192,20 @@ void VigemClient::setKeyMapper(const VigemKeyMapper &mapper)
  */
 bool VigemClient::startup(const QString & target)
 {
+    if (vigem_client) {
+        qWarning() << "VigemClient::startup" << "trying to startup while already started";
+
+        return true;
+    }
+
     vigem_client = alloc_function();
 
     if (!vigem_client) {
         qWarning() << "VigemClient::startup" << "alloc_function returned nullptr";
+
+        vigem_client = nullptr;
+        vigem_target = nullptr;
+
         return false;
     }
 
@@ -204,6 +214,9 @@ bool VigemClient::startup(const QString & target)
     if (err != ErrorNone) {
         qWarning() << "VigemClient::startup" << "connect_function returned" << err;
         free_function(vigem_client);
+
+        vigem_client = nullptr;
+        vigem_target = nullptr;
 
         return false;
     }
@@ -218,6 +231,9 @@ bool VigemClient::startup(const QString & target)
         disconnect_function(vigem_client);
         free_function(vigem_client);
 
+        vigem_client = nullptr;
+        vigem_target = nullptr;
+
         return false;
     }
 
@@ -226,6 +242,9 @@ bool VigemClient::startup(const QString & target)
 
         disconnect_function(vigem_client);
         free_function(vigem_client);
+
+        vigem_client = nullptr;
+        vigem_target = nullptr;
 
         return false;
     }
@@ -238,6 +257,9 @@ bool VigemClient::startup(const QString & target)
         disconnect_function(vigem_client);
         free_function(vigem_client);
 
+        vigem_client = nullptr;
+        vigem_target = nullptr;
+
         return false;
     }
 
@@ -246,10 +268,19 @@ bool VigemClient::startup(const QString & target)
 
 bool VigemClient::shutdown()
 {
+    if (!vigem_client) {
+        qWarning() << "VigemClient::shutdown" << "trying to shutdown while already stopped";
+
+        return true;
+    }
+
     target_remove_function(vigem_client, vigem_target);
     target_free_function(vigem_target);
     disconnect_function(vigem_client);
     free_function(vigem_client);
+
+    vigem_client = nullptr;
+    vigem_target = nullptr;
 
     return true;
 }
