@@ -3,6 +3,10 @@
 #include <Limelight.h>
 #include <SDL.h>
 
+#include <QDir>
+
+#include "vigem/vigemsdlobject.h"
+
 #define VK_0 0x30
 #define VK_A 0x41
 
@@ -12,6 +16,66 @@
 #define VK_F13 0x7C
 #define VK_NUMPAD0 0x60
 #endif
+
+static SDL_Window * keys_window = nullptr;
+static SDL_Renderer * keys_renderer = nullptr;
+static SDL_Texture * keys_texture = nullptr;
+
+static void showKeys()
+{
+    if (keys_window) {
+        return;
+    }
+    SDL_DisplayMode dm;
+
+    SDL_GetCurrentDisplayMode(0, &dm);
+
+    int x = (dm.w - 856) / 2;
+    int y = (dm.h - 266) / 2;
+
+    if (x < 0) {
+        x = 0;
+    }
+    if (y < 0) {
+        y = 0;
+    }
+
+    QString filename = QDir::homePath() + QDir::separator() +
+            QString(".partyzone") + QDir::separator() +
+            QString("keys.bmp");
+
+    keys_window = SDL_CreateWindow("", x, y, 856, 266, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS);
+
+    keys_renderer = SDL_CreateRenderer(keys_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+    SDL_Surface * surf = SDL_LoadBMP(filename.toUtf8().constData());
+
+    keys_texture = SDL_CreateTextureFromSurface(keys_renderer, surf);
+
+    SDL_FreeSurface(surf);
+
+    SDL_RenderClear(keys_renderer);
+    SDL_RenderCopy(keys_renderer, keys_texture, nullptr, nullptr);
+    SDL_RenderPresent(keys_renderer);
+}
+
+static void hideKeys()
+{
+    SDL_DestroyTexture(keys_texture);
+    SDL_DestroyRenderer(keys_renderer);
+    SDL_DestroyWindow(keys_window);
+
+    keys_texture = nullptr;
+    keys_renderer = nullptr;
+    keys_window = nullptr;
+}
+
+static bool keysShown()
+{
+    return bool(keys_window);
+}
+
+extern VigemSDLObject * vigem_sdl;
 
 void SdlInputHandler::performSpecialKeyCombo(KeyCombo combo)
 {
@@ -149,8 +213,6 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
         return;
     }
 
-<<<<<<< Updated upstream
-=======
     if (vigem_sdl->handleKeyboardEvent(event)) {
         return;
     }
@@ -171,7 +233,6 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
         }
     }
 
->>>>>>> Stashed changes
     // Check for our special key combos
     if ((event->state == SDL_PRESSED) &&
             //(event->keysym.mod & KMOD_CTRL) &&

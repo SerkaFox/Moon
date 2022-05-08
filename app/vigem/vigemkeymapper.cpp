@@ -67,10 +67,10 @@ VigemKeyMapper VigemKeyMapper::createDefault()
     mapper.keyMap[ButtonBack] = Qt::Key_R;
     mapper.keyMap[ButtonLThumb] = Qt::Key_Q;
     mapper.keyMap[ButtonRThumb] = Qt::Key_Insert;
-    mapper.keyMap[ButtonLShoulder] = Qt::Key_K;
-    mapper.keyMap[ButtonRShoulder] = Qt::Key_L;
-    mapper.keyMap[ButtonLTrigger] = Qt::Key_I;
-    mapper.keyMap[ButtonRTrigger] = Qt::Key_O;
+    mapper.keyMap[ButtonLShoulder] = Qt::Key_I;
+    mapper.keyMap[ButtonRShoulder] = Qt::Key_O;
+    mapper.keyMap[ButtonLTrigger] = Qt::Key_K;
+    mapper.keyMap[ButtonRTrigger] = Qt::Key_L;
     mapper.keyMap[ButtonLThumbLeft] = Qt::Key_A;
     mapper.keyMap[ButtonLThumbRight] = Qt::Key_D;
     mapper.keyMap[ButtonLThumbUp] = Qt::Key_W;
