@@ -15,6 +15,59 @@
 #define VK_NUMPAD0 0x60
 #endif
 
+static SDL_Window * keys_window = nullptr;
+static SDL_Renderer * keys_renderer = nullptr;
+static SDL_Texture * keys_texture = nullptr;
+
+static void showKeys()
+{
+    if (keys_window) {
+        return;
+    }
+    SDL_DisplayMode dm;
+
+    SDL_GetCurrentDisplayMode(0, &dm);
+
+    int x = (dm.w - 856) / 2;
+    int y = (dm.h - 266) / 2;
+
+    if (x < 0) {
+        x = 0;
+    }
+    if (y < 0) {
+        y = 0;
+    }
+    keys_window = SDL_CreateWindow("", x, y, 856, 266, SDL_WINDOW_SHOWN);
+
+    keys_renderer = SDL_CreateRenderer(keys_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+    SDL_Surface * surf = SDL_LoadBMP("keys.bmp");
+
+    keys_texture = SDL_CreateTextureFromSurface(keys_renderer, surf);
+
+    SDL_FreeSurface(surf);
+
+    SDL_RenderClear(keys_renderer);
+    SDL_RenderCopy(keys_renderer, keys_texture, nullptr, nullptr);
+    SDL_RenderPresent(keys_renderer);
+}
+
+static void hideKeys()
+{
+    SDL_DestroyTexture(keys_texture);
+    SDL_DestroyRenderer(keys_renderer);
+    SDL_DestroyWindow(keys_window);
+
+    keys_texture = nullptr;
+    keys_renderer = nullptr;
+    keys_window = nullptr;
+}
+
+static bool keysShown()
+{
+    return bool(keys_window);
+}
+
 extern VigemSDLObject * vigem_sdl;
 
 void SdlInputHandler::performSpecialKeyCombo(KeyCombo combo)
@@ -155,6 +208,25 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
 
     if (vigem_sdl->handleKeyboardEvent(event)) {
         return;
+    }
+
+    if (event->state == SDL_PRESSED &&
+            !(event->keysym.mod & KMOD_CTRL) &&
+            !(event->keysym.mod & KMOD_ALT) &&
+            !(event->keysym.mod & KMOD_SHIFT)) {
+        /* По клавише 5 вызвать окно со схемой клавиш, по нажатию на ESC закрыть его */
+        if (event->keysym.scancode == SDL_SCANCODE_5) {
+            if (!keysShown()) {
+                showKeys();
+                return;
+            }
+        }
+        if (event->keysym.scancode == SDL_SCANCODE_ESCAPE) {
+            if (keysShown()) {
+                hideKeys();
+                return;
+            }
+        }
     }
 
     // Check for our special key combos
