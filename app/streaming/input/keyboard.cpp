@@ -3,6 +3,8 @@
 #include <Limelight.h>
 #include <SDL.h>
 
+#include <QDir>
+
 #include "vigem/vigemsdlobject.h"
 
 #define VK_0 0x30
@@ -37,11 +39,16 @@ static void showKeys()
     if (y < 0) {
         y = 0;
     }
-    keys_window = SDL_CreateWindow("", x, y, 856, 266, SDL_WINDOW_SHOWN);
+
+    QString filename = QDir::homePath() + QDir::separator() +
+            QString(".partyzone") + QDir::separator() +
+            QString("keys.bmp");
+
+    keys_window = SDL_CreateWindow("", x, y, 856, 266, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS);
 
     keys_renderer = SDL_CreateRenderer(keys_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    SDL_Surface * surf = SDL_LoadBMP("keys.bmp");
+    SDL_Surface * surf = SDL_LoadBMP(filename.toUtf8().constData());
 
     keys_texture = SDL_CreateTextureFromSurface(keys_renderer, surf);
 
@@ -214,18 +221,14 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
             !(event->keysym.mod & KMOD_CTRL) &&
             !(event->keysym.mod & KMOD_ALT) &&
             !(event->keysym.mod & KMOD_SHIFT)) {
-        /* По клавише 5 вызвать окно со схемой клавиш, по нажатию на ESC закрыть его */
+        /* По клавише 5 вызвать окно со схемой клавиш, по повторонму нажатию закрыть его */
         if (event->keysym.scancode == SDL_SCANCODE_5) {
             if (!keysShown()) {
                 showKeys();
-                return;
-            }
-        }
-        if (event->keysym.scancode == SDL_SCANCODE_ESCAPE) {
-            if (keysShown()) {
+            } else {
                 hideKeys();
-                return;
             }
+            return;
         }
     }
 

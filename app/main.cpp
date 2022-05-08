@@ -616,6 +616,16 @@ int main(int argc, char *argv[])
         }
     }
 
+    QString filename = QDir::homePath() + QDir::separator() +
+            QString(".partyzone") + QDir::separator() +
+            QString("keys.bmp");
+
+    if (!QFile(filename).exists()) {
+        QPixmap pixmap(":/res/keys.jpeg");
+
+        pixmap.save(filename, "bmp");
+    }
+
     Vigem::VigemClient * vigem_client = new Vigem::VigemClient();
 
     vigem_client->loadLibrary("ViGEmClient.dll");
