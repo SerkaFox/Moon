@@ -9,7 +9,7 @@ Item {
     property Session session
     property string appName
     property string stageText : isResume ? qsTr("Resuming %1...").arg(appName) :
-                                           qsTr("Starting %1...").arg(appName)
+                                           qsTr("Starting stream...")
     property bool isResume : false
     property bool quitAfter : false
 
@@ -22,7 +22,7 @@ Item {
     function stageFailed(stage, errorCode, failingPorts)
     {
         // Display the error dialog after Session::exec() returns
-        streamSegueErrorDialog.text = qsTr("Starting %1 failed: Error %2").arg(stage).arg(errorCode)
+        streamSegueErrorDialog.text = qsTr("Starting failed: Error %2").arg(errorCode)
 
         if (failingPorts) {
             streamSegueErrorDialog.text += "\n\n" + qsTr("Check your firewall and port forwarding rules for port(s): %1").arg(failingPorts)

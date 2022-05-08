@@ -303,9 +303,9 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
     }
     else {
         switch (event->keysym.scancode) {
-            case SDL_SCANCODE_BACKSPACE:
-                keyCode = 0x08;
-                break;
+           // case SDL_SCANCODE_BACKSPACE:
+             //   keyCode = 0x08;
+               // break;
             case SDL_SCANCODE_TAB:
                 keyCode = 0x09;
                 break;
@@ -453,9 +453,9 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
             case SDL_SCANCODE_AC_HOME:
                 keyCode = 0xAC;
                 break;
-            case SDL_SCANCODE_SEMICOLON:
-                keyCode = 0xBA;
-                break;
+           // case SDL_SCANCODE_SEMICOLON:
+           //     keyCode = 0xBA;
+           //     break;
             case SDL_SCANCODE_EQUALS:
                 keyCode = 0xBB;
                 break;

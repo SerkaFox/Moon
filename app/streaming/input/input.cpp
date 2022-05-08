@@ -82,8 +82,8 @@ SdlInputHandler::SdlInputHandler(StreamingPreferences& prefs, NvComputer*, int s
     m_SpecialKeyCombos[KeyComboQuit].enabled = true;
 
     m_SpecialKeyCombos[KeyComboUngrabInput].keyCombo = KeyComboUngrabInput;
-    m_SpecialKeyCombos[KeyComboUngrabInput].keyCode = SDLK_v;
-    m_SpecialKeyCombos[KeyComboUngrabInput].scanCode = SDL_SCANCODE_V;
+    m_SpecialKeyCombos[KeyComboUngrabInput].keyCode = SDLK_x;
+    m_SpecialKeyCombos[KeyComboUngrabInput].scanCode = SDL_SCANCODE_X;
     m_SpecialKeyCombos[KeyComboUngrabInput].enabled = QGuiApplication::platformName() != "eglfs";
 
     m_SpecialKeyCombos[KeyComboToggleFullScreen].keyCombo = KeyComboToggleFullScreen;

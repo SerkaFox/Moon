@@ -165,7 +165,7 @@ void Session::clConnectionStatusUpdate(int connectionStatus)
     {
     case CONN_STATUS_POOR:
         if (s_ActiveSession->m_StreamConfig.bitrate > 5000) {
-            strcpy(s_ActiveSession->m_OverlayManager.getOverlayText(Overlay::OverlayStatusUpdate), "Slow connection to PC\nReduce your bitrate");
+            strcpy(s_ActiveSession->m_OverlayManager.getOverlayText(Overlay::OverlayStatusUpdate), "Wait... connection low");
         }
         else {
             strcpy(s_ActiveSession->m_OverlayManager.getOverlayText(Overlay::OverlayStatusUpdate), "Poor connection to PC");
@@ -1381,7 +1381,7 @@ void Session::execInternal()
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 
-    m_Window = SDL_CreateWindow("Moonlight",
+    m_Window = SDL_CreateWindow("PartyZone Stream",
                                 x,
                                 y,
                                 width,
@@ -1392,7 +1392,7 @@ void Session::execInternal()
                     "SDL_CreateWindow() failed with platform flags: %s",
                     SDL_GetError());
 
-        m_Window = SDL_CreateWindow("Moonlight",
+        m_Window = SDL_CreateWindow("PartyZone Stream",
                                     x,
                                     y,
                                     width,
