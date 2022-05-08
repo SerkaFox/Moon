@@ -77,8 +77,8 @@ SdlInputHandler::SdlInputHandler(StreamingPreferences& prefs, NvComputer*, int s
 
     // Populate special key combo configuration
     m_SpecialKeyCombos[KeyComboQuit].keyCombo = KeyComboQuit;
-    m_SpecialKeyCombos[KeyComboQuit].keyCode = SDLK_x;
-    m_SpecialKeyCombos[KeyComboQuit].scanCode = SDL_SCANCODE_X;
+    m_SpecialKeyCombos[KeyComboQuit].keyCode = SDLK_q;
+    m_SpecialKeyCombos[KeyComboQuit].scanCode = SDL_SCANCODE_Q;
     m_SpecialKeyCombos[KeyComboQuit].enabled = true;
 
     m_SpecialKeyCombos[KeyComboUngrabInput].keyCombo = KeyComboUngrabInput;
