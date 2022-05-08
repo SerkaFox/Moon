@@ -1187,7 +1187,7 @@ VigemClient::VigemError VigemClient::pressButton(Vigem::VigemOperation op)
         return pressLeftShoulder();
 
     case Vigem::ButtonRShoulder:
-        return releaseLeftShoulder();
+        return pressRightShoulder();
 
     case Vigem::ButtonLTrigger:
         return pressLeftTrigger();
@@ -1280,7 +1280,7 @@ VigemClient::VigemError VigemClient::releaseButton(Vigem::VigemOperation op)
         return releaseLeftShoulder();
 
     case Vigem::ButtonRShoulder:
-        return releaseLeftShoulder();
+        return releaseRightShoulder();
 
     case Vigem::ButtonLTrigger:
         return releaseLeftTrigger();
