@@ -44,7 +44,7 @@ static void showKeys()
             QString(".partyzone") + QDir::separator() +
             QString("keys.bmp");
 
-    keys_window = SDL_CreateWindow("", x, y, 856, 266, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS);
+    keys_window = SDL_CreateWindow("", x, y, 856, 266, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_ALWAYS_ON_TOP);
 
     keys_renderer = SDL_CreateRenderer(keys_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
