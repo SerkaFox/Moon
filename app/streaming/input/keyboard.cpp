@@ -57,6 +57,8 @@ static void showKeys()
     SDL_RenderClear(keys_renderer);
     SDL_RenderCopy(keys_renderer, keys_texture, nullptr, nullptr);
     SDL_RenderPresent(keys_renderer);
+
+    SDL_RaiseWindow(keys_window);
 }
 
 static void hideKeys()
