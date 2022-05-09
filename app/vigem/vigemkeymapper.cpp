@@ -55,22 +55,22 @@ VigemKeyMapper VigemKeyMapper::createDefault()
 {
     VigemKeyMapper mapper;
 
-    mapper.keyMap[ButtonA] = Qt::Key_H;
-    mapper.keyMap[ButtonB] = Qt::Key_J;
-    mapper.keyMap[ButtonX] = Qt::Key_Y;
-    mapper.keyMap[ButtonY] = Qt::Key_U;
+    mapper.keyMap[ButtonA] = Qt::Key_G;
+    mapper.keyMap[ButtonB] = Qt::Key_H;
+    mapper.keyMap[ButtonX] = Qt::Key_T;
+    mapper.keyMap[ButtonY] = Qt::Key_Y;
     mapper.keyMap[ButtonLeft] = Qt::Key_Left;
     mapper.keyMap[ButtonRight] = Qt::Key_Right;
     mapper.keyMap[ButtonUp] = Qt::Key_Up;
     mapper.keyMap[ButtonDown] = Qt::Key_Down;
-    mapper.keyMap[ButtonStart] = Qt::Key_1;
+    mapper.keyMap[ButtonStart] = Qt::Key_Return;
     mapper.keyMap[ButtonBack] = Qt::Key_Backspace;
     mapper.keyMap[ButtonLThumb] = Qt::Key_Q;
     mapper.keyMap[ButtonRThumb] = Qt::Key_0;
-    mapper.keyMap[ButtonLShoulder] = Qt::Key_6;
-    mapper.keyMap[ButtonRShoulder] = Qt::Key_7;
-    mapper.keyMap[ButtonLTrigger] = Qt::Key_G;
-    mapper.keyMap[ButtonRTrigger] = Qt::Key_K;
+    mapper.keyMap[ButtonLShoulder] = Qt::Key_5;
+    mapper.keyMap[ButtonRShoulder] = Qt::Key_6;
+    mapper.keyMap[ButtonLTrigger] = Qt::Key_U;
+    mapper.keyMap[ButtonRTrigger] = Qt::Key_J;
     mapper.keyMap[ButtonLThumbLeft] = Qt::Key_A;
     mapper.keyMap[ButtonLThumbRight] = Qt::Key_D;
     mapper.keyMap[ButtonLThumbUp] = Qt::Key_W;
