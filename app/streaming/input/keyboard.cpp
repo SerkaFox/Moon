@@ -44,7 +44,7 @@ static void showKeys()
             QString(".partyzone") + QDir::separator() +
             QString("keys.bmp");
 
-    keys_window = SDL_CreateWindow("", x, y, 856, 266, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS);
+    keys_window = SDL_CreateWindow("", x, y, 856, 266, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_ALWAYS_ON_TOP);
 
     keys_renderer = SDL_CreateRenderer(keys_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
@@ -218,10 +218,9 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
     }
 
     if (event->state == SDL_PRESSED &&
-         !(event->keysym.mod & KMOD_CTRL) &&
+            !(event->keysym.mod & KMOD_CTRL) &&
             !(event->keysym.mod & KMOD_ALT) &&
-           !(event->keysym.mod & KMOD_SHIFT))
-    {
+            !(event->keysym.mod & KMOD_SHIFT)) {
         /* По клавише 5 вызвать окно со схемой клавиш, по повторонму нажатию закрыть его */
         if (event->keysym.scancode == SDL_SCANCODE_M) {
             if (!keysShown()) {
@@ -235,8 +234,9 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
 
     // Check for our special key combos
     if ((event->state == SDL_PRESSED) &&
-            //(event->keysym.mod & KMOD_CTRL) &&
-            (event->keysym.mod & KMOD_ALT)){// &&
+            (event->keysym.mod & KMOD_ALT)){
+            //&&
+            //(event->keysym.mod & KMOD_ALT) &&
             //(event->keysym.mod & KMOD_SHIFT)) {
         // First we test the SDLK combos for matches,
         // that way we ensure that latin keyboard users
@@ -303,9 +303,9 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
     }
     else {
         switch (event->keysym.scancode) {
-            case SDL_SCANCODE_BACKSPACE:
-                keyCode = 0x08;
-                break;
+           // case SDL_SCANCODE_BACKSPACE:
+             //   keyCode = 0x08;
+               // break;
             case SDL_SCANCODE_TAB:
                 keyCode = 0x09;
                 break;
@@ -453,9 +453,9 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
             case SDL_SCANCODE_AC_HOME:
                 keyCode = 0xAC;
                 break;
-            case SDL_SCANCODE_SEMICOLON:
-                keyCode = 0xBA;
-                break;
+           // case SDL_SCANCODE_SEMICOLON:
+           //     keyCode = 0xBA;
+           //     break;
             case SDL_SCANCODE_EQUALS:
                 keyCode = 0xBB;
                 break;

@@ -9,7 +9,7 @@ Item {
     property Session session
     property string appName
     property string stageText : isResume ? qsTr("Resuming %1...").arg(appName) :
-                                           qsTr("Starting %1...").arg(appName)
+                                           qsTr("Starting stream...")
     property bool isResume : false
     property bool quitAfter : false
 
@@ -22,7 +22,7 @@ Item {
     function stageFailed(stage, errorCode, failingPorts)
     {
         // Display the error dialog after Session::exec() returns
-        streamSegueErrorDialog.text = qsTr("Starting %1 failed: Error %2").arg(stage).arg(errorCode)
+        streamSegueErrorDialog.text = qsTr("Starting failed: Error %2").arg(errorCode)
 
         if (failingPorts) {
             streamSegueErrorDialog.text += "\n\n" + qsTr("Check your firewall and port forwarding rules for port(s): %1").arg(failingPorts)
@@ -162,8 +162,8 @@ Item {
             // in the hintText control itself to synchronize
             // with Session.exec() which requires no concurrent
             // gamepad usage.
-            hintText.text = qsTr("Tip:") + " " + qsTr("Press %1 to disconnect your session").arg(SdlGamepadKeyNavigation.getConnectedGamepads() > 0 ?
-                                                  qsTr("Start+Select+L1+R1") : qsTr("Ctrl+Alt+Shift+Q"))
+            hintText.text = qsTr("Tip:") + " " + qsTr("Press M:Help, %1:Quit, Alt+X:Mouse, ALt+Enter:FullScreen").arg(SdlGamepadKeyNavigation.getConnectedGamepads() > 0 ?
+                                                  qsTr("Start+Select+L1+R1") : qsTr("Alt+Q"))
 
             // Stop GUI gamepad usage now
             SdlGamepadKeyNavigation.disable()

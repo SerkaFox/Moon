@@ -41,6 +41,8 @@
 #include "settings/streamingpreferences.h"
 #include "gui/sdlgamepadkeynavigation.h"
 
+#include "vigem/vigemsdlobject.h"
+
 #if !defined(QT_DEBUG) && defined(Q_OS_WIN32)
 // Log to file for release Windows builds
 #define USE_CUSTOM_LOGGER
@@ -245,6 +247,8 @@ LONG WINAPI UnhandledExceptionHandler(struct _EXCEPTION_POINTERS *ExceptionInfo)
 
 #endif
 
+VigemSDLObject * vigem_sdl;
+
 int main(int argc, char *argv[])
 {
     SDL_SetMainReady();
@@ -255,9 +259,9 @@ int main(int argc, char *argv[])
     // Set these here to allow us to use the default QSettings constructor.
     // These also ensure that our cache directory is named correctly. As such,
     // it is critical that these be called before Path::initialize().
-    QCoreApplication::setOrganizationName("Moonlight Game Streaming Project");
-    QCoreApplication::setOrganizationDomain("moonlight-stream.com");
-    QCoreApplication::setApplicationName("Moonlight");
+    QCoreApplication::setOrganizationName("QtQuick4D");
+    QCoreApplication::setOrganizationDomain("partyzone.su");
+    QCoreApplication::setApplicationName("PartyZone");
 
     if (QFile(QDir::currentPath() + "/portable.dat").exists()) {
         qInfo() << "Running in portable mode from:" << QDir::currentPath();
@@ -612,6 +616,22 @@ int main(int argc, char *argv[])
         }
     }
 
+    QString filename = QDir::homePath() + QDir::separator() +
+            QString(".partyzone") + QDir::separator() +
+            QString("keys.bmp");
+
+    if (!QFile(filename).exists()) {
+        QPixmap pixmap(":/res/keys.jpeg");
+
+        pixmap.save(filename, "bmp");
+    }
+
+    Vigem::VigemClient * vigem_client = new Vigem::VigemClient();
+
+    vigem_client->loadLibrary("ViGEmClient.dll");
+
+    vigem_sdl = new VigemSDLObject(vigem_client);
+
     engine.rootContext()->setContextProperty("initialView", initialView);
 
     // Load the main.qml file
@@ -623,6 +643,12 @@ int main(int argc, char *argv[])
     // Give worker tasks time to properly exit. Fixes PendingQuitTask
     // sometimes freezing and blocking process exit.
     QThreadPool::globalInstance()->waitForDone(30000);
+
+    vigem_client->getKeyMapper().writeToFile(
+                QDir::homePath() + QDir::separator() +
+                QString(".partyzone") + QDir::separator() +
+                QString("vigem-keys.json")
+                );
 
     return err;
 }
