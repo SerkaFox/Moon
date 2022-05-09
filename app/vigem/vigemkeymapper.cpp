@@ -59,12 +59,12 @@ VigemKeyMapper VigemKeyMapper::createDefault()
     mapper.keyMap[ButtonB] = Qt::Key_J;
     mapper.keyMap[ButtonX] = Qt::Key_Y;
     mapper.keyMap[ButtonY] = Qt::Key_U;
-    mapper.keyMap[ButtonLeft] = Qt::Key_E;
-    mapper.keyMap[ButtonRight] = Qt::Key_T;
-    mapper.keyMap[ButtonUp] = Qt::Key_4;
-    mapper.keyMap[ButtonDown] = Qt::Key_R;
+    mapper.keyMap[ButtonLeft] = Qt::Key_Left;
+    mapper.keyMap[ButtonRight] = Qt::Key_Right;
+    mapper.keyMap[ButtonUp] = Qt::Key_Up;
+    mapper.keyMap[ButtonDown] = Qt::Key_Down;
     mapper.keyMap[ButtonStart] = Qt::Key_1;
-    mapper.keyMap[ButtonBack] = Qt::Key_2;
+    mapper.keyMap[ButtonBack] = Qt::Key_Backspace;
     mapper.keyMap[ButtonLThumb] = Qt::Key_Q;
     mapper.keyMap[ButtonRThumb] = Qt::Key_0;
     mapper.keyMap[ButtonLShoulder] = Qt::Key_6;

@@ -159,6 +159,30 @@ Qt::Key VigemSDLObject::getQtKey(SDL_KeyboardEvent *event)
     case SDL_SCANCODE_Z:
         return Qt::Key_Z;
 
+    case SDL_SCANCODE_LEFT:
+        return Qt::Key_Left;
+
+    case SDL_SCANCODE_RIGHT:
+        return Qt::Key_Right;
+
+    case SDL_SCANCODE_UP:
+        return Qt::Key_Up;
+
+    case SDL_SCANCODE_DOWN:
+        return Qt::Key_Down;
+
+    case SDL_SCANCODE_RETURN:
+        return Qt::Key_Return;
+
+    case SDL_SCANCODE_KP_ENTER:
+        return Qt::Key_Enter;
+
+    case SDL_SCANCODE_SPACE:
+        return Qt::Key_Space;
+
+    case SDL_SCANCODE_BACKSPACE:
+        return Qt::Key_Backspace;
+
     default:
         return Qt::Key_unknown;
     }
