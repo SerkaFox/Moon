@@ -226,6 +226,9 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
         /* По клавише 5 вызвать окно со схемой клавиш, по повторонму нажатию закрыть его */
         if (event->keysym.scancode == SDL_SCANCODE_M) {
             if (!keysShown()) {
+                if (Session::s_ActiveSession->m_IsFullScreen) {
+                    Session::s_ActiveSession->toggleFullscreen();
+                }
                 showKeys();
             } else {
                 hideKeys();
