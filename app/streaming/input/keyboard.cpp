@@ -58,6 +58,7 @@ static void showKeys()
     SDL_RenderCopy(keys_renderer, keys_texture, nullptr, nullptr);
     SDL_RenderPresent(keys_renderer);
 
+    SDL_SetWindowInputFocus(keys_window);
     SDL_RaiseWindow(keys_window);
 }
 
@@ -226,9 +227,6 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
         /* По клавише 5 вызвать окно со схемой клавиш, по повторонму нажатию закрыть его */
         if (event->keysym.scancode == SDL_SCANCODE_M) {
             if (!keysShown()) {
-                if (Session::s_ActiveSession->m_IsFullScreen) {
-                    Session::s_ActiveSession->toggleFullscreen();
-                }
                 showKeys();
             } else {
                 hideKeys();
