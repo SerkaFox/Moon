@@ -220,6 +220,7 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
         return;
     }
 
+#if 0
     if (event->state == SDL_PRESSED &&
             !(event->keysym.mod & KMOD_CTRL) &&
             !(event->keysym.mod & KMOD_ALT) &&
@@ -234,6 +235,7 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
             return;
         }
     }
+#endif
 
     // Check for our special key combos
     if ((event->state == SDL_PRESSED) &&
