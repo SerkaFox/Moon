@@ -876,7 +876,7 @@ VigemClient::VigemError VigemClient::pressLeftThumbLeft()
 {
     qDebug() << "VigemClient: trying to move left thumb to the left";
 
-    if (inputGamepad.sThumbLX == 0) {
+    if (inputGamepad.sThumbLX >= 0) {
         inputGamepad.sThumbLX -= 32767;
     }
 
@@ -893,7 +893,7 @@ VigemClient::VigemError VigemClient::releaseLeftThumbLeft()
 {
     qDebug() << "VigemClient: trying to release left thumb moved to the left";
 
-    if (inputGamepad.sThumbLX < 0) {
+    if (inputGamepad.sThumbLX <= 0) {
         inputGamepad.sThumbLX += 32767;
     }
 
@@ -910,7 +910,7 @@ VigemClient::VigemError VigemClient::pressLeftThumbRight()
 {
     qDebug() << "VigemClient: trying to move left thumb to the right";
 
-    if (inputGamepad.sThumbLX == 0) {
+    if (inputGamepad.sThumbLX <= 0) {
         inputGamepad.sThumbLX += 32767;
     }
 
@@ -927,7 +927,7 @@ VigemClient::VigemError VigemClient::releaseLeftThumbRight()
 {
     qDebug() << "VigemClient: trying to release left thumb moved to the right";
 
-    if (inputGamepad.sThumbLX > 0) {
+    if (inputGamepad.sThumbLX >= 0) {
         inputGamepad.sThumbLX -= 32767;
     }
 
@@ -944,7 +944,7 @@ VigemClient::VigemError VigemClient::pressLeftThumbUp()
 {
     qDebug() << "VigemClient: trying to move left thumb up";
 
-    if (inputGamepad.sThumbLY == 0) {
+    if (inputGamepad.sThumbLY <= 0) {
         inputGamepad.sThumbLY += 32767;
     }
 
@@ -961,7 +961,7 @@ VigemClient::VigemError VigemClient::releaseLeftThumbUp()
 {
     qDebug() << "VigemClient: trying to release left thumb moved up";
 
-    if (inputGamepad.sThumbLY > 0) {
+    if (inputGamepad.sThumbLY >= 0) {
         inputGamepad.sThumbLY -= 32767;
     }
 
@@ -978,7 +978,7 @@ VigemClient::VigemError VigemClient::pressLeftThumbDown()
 {
     qDebug() << "VigemClient: trying to move left thumb down";
 
-    if (inputGamepad.sThumbLY == 0) {
+    if (inputGamepad.sThumbLY >= 0) {
         inputGamepad.sThumbLY -= 32767;
     }
 
@@ -995,7 +995,7 @@ VigemClient::VigemError VigemClient::releaseLeftThumbDown()
 {
     qDebug() << "VigemClient: trying to release left thumb moved down";
 
-    if (inputGamepad.sThumbLY < 0) {
+    if (inputGamepad.sThumbLY <= 0) {
         inputGamepad.sThumbLY += 32767;
     }
 
@@ -1012,7 +1012,7 @@ VigemClient::VigemError VigemClient::pressRightThumbLeft()
 {
     qDebug() << "VigemClient: trying to move right thumb to the left";
 
-    if (inputGamepad.sThumbRX == 0) {
+    if (inputGamepad.sThumbRX >= 0) {
         inputGamepad.sThumbRX -= 32767;
     }
 
@@ -1029,7 +1029,7 @@ VigemClient::VigemError VigemClient::releaseRightThumbLeft()
 {
     qDebug() << "VigemClient: trying to release right thumb moved to the left";
 
-    if (inputGamepad.sThumbRX < 0) {
+    if (inputGamepad.sThumbRX <= 0) {
         inputGamepad.sThumbRX += 32767;
     }
 
@@ -1046,7 +1046,7 @@ VigemClient::VigemError VigemClient::pressRightThumbRight()
 {
     qDebug() << "VigemClient: trying to move right thumb to the right";
 
-    if (inputGamepad.sThumbRX == 0) {
+    if (inputGamepad.sThumbRX <= 0) {
         inputGamepad.sThumbRX += 32767;
     }
 
@@ -1063,7 +1063,7 @@ VigemClient::VigemError VigemClient::releaseRightThumbRight()
 {
     qDebug() << "VigemClient: trying to release right thumb moved to the right";
 
-    if (inputGamepad.sThumbRX > 0) {
+    if (inputGamepad.sThumbRX >= 0) {
         inputGamepad.sThumbRX -= 32767;
     }
 
@@ -1080,7 +1080,7 @@ VigemClient::VigemError VigemClient::pressRightThumbUp()
 {
     qDebug() << "VigemClient: trying to move right thumb up";
 
-    if (inputGamepad.sThumbRY == 0) {
+    if (inputGamepad.sThumbRY <= 0) {
         inputGamepad.sThumbRY += 32767;
     }
 
@@ -1097,7 +1097,7 @@ VigemClient::VigemError VigemClient::releaseRightThumbUp()
 {
     qDebug() << "VigemClient: trying to release right thumb moved up";
 
-    if (inputGamepad.sThumbRY > 0) {
+    if (inputGamepad.sThumbRY >= 0) {
         inputGamepad.sThumbRY -= 32767;
     }
 
@@ -1114,7 +1114,7 @@ VigemClient::VigemError VigemClient::pressRightThumbDown()
 {
     qDebug() << "VigemClient: trying to move right thumb down";
 
-    if (inputGamepad.sThumbRY == 0) {
+    if (inputGamepad.sThumbRY >= 0) {
         inputGamepad.sThumbRY -= 32767;
     }
 
@@ -1131,7 +1131,7 @@ VigemClient::VigemError VigemClient::releaseRightThumbDown()
 {
     qDebug() << "VigemClient: trying to release right thumb moved down";
 
-    if (inputGamepad.sThumbRY < 0) {
+    if (inputGamepad.sThumbRY <= 0) {
         inputGamepad.sThumbRY += 32767;
     }
 
